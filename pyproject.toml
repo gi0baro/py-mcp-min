@@ -1,0 +1,85 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-min"
+version = "20241105.160.0"
+description = "Model Context Protocol minimal SDK"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+
+authors = [
+    { name = "Giovanni Barillari", email = "g@baro.dev" }
+]
+
+keywords = ["mcp", "llm", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "pydantic~=2.7",
+]
+
+[project.urls]
+Homepage = 'https://github.com/gi0baro/py-mcp-min'
+Source = 'https://github.com/gi0baro/py-mcp-min'
+Issues = 'https://github.com/gi0baro/py-mcp-min/issues'
+
+[tool.hatch.build.targets.sdist]
+include = [
+    '/README.md',
+    '/LICENSE',
+    '/mcp_min',
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = 'double'
+
+[tool.ruff.lint]
+extend-select = [
+    # E and F are enabled by default
+    'B',      # flake8-bugbear
+    'C4',     # flake8-comprehensions
+    'C90',    # mccabe
+    'I',      # isort
+    'N',      # pep8-naming
+    'Q',      # flake8-quotes
+    'RUF100', # ruff (unused noqa)
+    'S',      # flake8-bandit
+    'W',      # pycodestyle
+]
+extend-ignore = [
+    'B006', # mutable function args are fine
+    'B904', # rising without from is fine
+    'E731', # assigning lambdas is fine
+    'N815', # leave to us var naming
+    'N818', # leave to us exc naming
+    'S101', # assert is fine
+    'S110', # pass on exceptions is fine
+]
+mccabe = { max-complexity = 44 }
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+lines-after-imports = 2
+known-first-party = ['mcp_min']
+
+[tool.uv]
+dev-dependencies = [
+    "ruff~=0.11",
+]
